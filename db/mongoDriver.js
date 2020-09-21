@@ -13,8 +13,12 @@ connection.once('open', () => {
 
 
 // Schema:
-const commentsSchema = new mongoose.Schema({
-  text: String,
+const userSchema = new mongoose.Schema({
+  userEmail: String,
+  userPasswordHash: String,
+  userPasswordHash: String,
+  dataPoint1: Number,
+  dataPoint2: mongoose.Types.Decimal128,
 });
 
 module.exports = connection;
