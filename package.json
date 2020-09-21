@@ -1,7 +1,6 @@
 {
-  "name": "express-react-mongo",
+  "name": "mern-stack-app",
   "version": "1.0.0",
-  "description": "A boilerplate to bootstrap a full-stack app using Express, React and MongoDB",
   "main": "index.js",
   "scripts": {
     "start": "node server/app.js",
@@ -10,30 +9,15 @@
     "watchBuild": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Merovingian87/express-react-mongo-boilerplate.git"
-  },
-  "keywords": [
-    "boilerplate",
-    "express",
-    "react",
-    "mongo"
-  ],
   "author": "Merovingian87",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Merovingian87/express-react-mongo-boilerplate/issues"
-  },
-  "homepage": "https://github.com/Merovingian87/express-react-mongo-boilerplate#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.9.20",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "styled-components": "^5.1.1"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
