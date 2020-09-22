@@ -1,24 +1,31 @@
 const mongoose = require('mongoose');
 const configString = require('./config.js');
 
-const connection = mongoose.connect(`${configString}`, {
+mongoose.connect(`${configString}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
-connection.on('error', console.error.bind(console, 'connection error:'));
-connection.once('open', () => {
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
   console.log('MongoDB Online!');
 });
 
 
 // Schema:
-const userSchema = new mongoose.Schema({
-  userEmail: String,
-  userPasswordHash: String,
+const userSchema = mongoose.Schema({
+  userEmail: {
+    type: String,
+    unique: true,
+  },
   userPasswordHash: String,
   dataPoint1: Number,
   dataPoint2: mongoose.Types.Decimal128,
+  payStatus: Boolean, 
 });
 
-module.exports = connection;
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;

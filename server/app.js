@@ -14,10 +14,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // replace data with actual resource name
 app.get('/api/data/', controller.dataGetAll);
-app.get('/api/data/:id/', controller.dataGetOne);
+// app.get('/api/data/:id/', controller.dataGetOne);
 app.post('/api/data', controller.dataCreate);
-app.put('/api/data/:id', controller.dataUpdateOne);
-app.put('/api/data/', controller.dataUpdateMany);
+// app.put('/api/data/:id', controller.dataUpdateOne);
+// app.put('/api/data/', controller.dataUpdateMany);
 
 
 const port = 8000;
