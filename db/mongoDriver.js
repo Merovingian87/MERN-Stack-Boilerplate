@@ -1,31 +1,19 @@
-const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
 const configString = require('./config.js');
 
-mongoose.connect(`${configString}`, {
+const client = new MongoClient(configString, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
+  useUnifiedTopology: true
 });
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('MongoDB Online!');
+client.connect((err) => {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  const db = client.db('admin');
+  console.log( `Mongo Live,  connected to ${db.databaseName} DB`);
 });
 
-
-// Schema:
-const userSchema = mongoose.Schema({
-  userEmail: {
-    type: String,
-    unique: true,
-  },
-  userPasswordHash: String,
-  dataPoint1: Number,
-  dataPoint2: mongoose.Types.Decimal128,
-  payStatus: Boolean, 
-});
-
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+const db = client.db('admin');
+module.exports.db = db;

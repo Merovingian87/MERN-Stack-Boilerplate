@@ -23,6 +23,5 @@ app.post('/api/data', controller.dataCreate);
 const port = 8000;
 
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   console.log(`listening on port: ${port}`);
 });

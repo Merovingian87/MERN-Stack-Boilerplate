@@ -1,37 +1,31 @@
-const User = require('../db/mongoDriver.js');
+const mongo = require('../db/mongoDriver.js');
 
-exports.dataGetAll = (req, res) => {
-  const filter = { __v: 0 };
-  User.find({}, filter, (err, docs) => {
-    if (err) {
-      console.log('Error fetching data', err);
-      return;
-    }
-    res.send(docs);
-  }).sort({ _id: 'desc' }).limit(100);
+const users = mongo.db.collection('users');
+
+exports.dataGetAll = async (req, res) => {
+  const filter = { _id: 0 };
+  const docs = await users.find({}).project(filter).sort( { name: -1 } ).limit(20).toArray();
+  res.send(docs);
 };
 
 // exports.dataGetOne = (req, res) => {
-
 // };
 
 exports.dataCreate = (req, res) => {
-  const user = new User(req.body);
-  user.save((err) => {
+  const userDoc = req.body;
+  users.insertOne(userDoc, (err, docs) => {
     if (err) {
       console.log(err);
       res.send('Error Saving Email');
       return
     }
-    console.log('Document saved!');
+    console.log('Document saved!', docs);
     res.send('Doc created');
   });
 };
 
 // exports.dataUpdateOne = (req, res) => {
-
 // };
 
 // exports.dataUpdateMany = (req, res) => {
-
 // };
